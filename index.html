@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Página Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial Black', Arial, sans-serif;
+            background-image: url('https://cdn.pixabay.com/photo/2017/10/11/23/35/musical-background-2842924_640.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 4em; /* Aumentamos el tamaño del título */
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            display: inline-block;
+            border-radius: 15px;
+            animation: moveTitle 2s infinite alternate;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-style: italic;
+            color: #8B4513;
+        }
+
+        .border-container {
+            background-color: rgba(255, 165, 0, 0.8);
+            border: 3px solid rgba(150, 75, 0, 0.5);
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px; /* Reducimos el espacio interno */
+            width: 40%; /* Reducimos el ancho del contenedor */
+            box-shadow: 0 0 20px rgba(150, 75, 0, 0.8);
+        }
+
+        .border-container p {
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 1.2em;
+        }
+
+        .footer-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .footer-container p {
+            color: yellow;
+            font-size: 1.2em;
+            animation: blinkText 1.5s infinite;
+        }
+
+        .guitar-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .guitar-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 30%;
+        }
+
+        .guitar-item img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .guitar-item p {
+            font-size: 1em;
+            color: white;
+        }
+
+        .guitar-item button {
+            background-color: #8B4513;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .guitar-item button:hover {
+            background-color: #A0522D;
+        }
+
+        .cart-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            color: white;
+            z-index: 9999;
+        }
+
+        .cart-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #8B4513;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 14h8l-2-6h-6zm6-8c0-1.1-.9-2-2-2h-3.2l-.67-1.34c-.13-.27-.41-.44-.71-.44H6c-.55 0-1 .45-1 1H2l2.28 12.76L5.31 23h13.38l1.02-5.24L22 6h-3zm-6 12c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 24px 24px;
+        }
+
+        .cart-text {
+            margin-left: 10px;
+        }
+
+        .cart-items {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 9998;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cart-item img {
+            width: 30px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .cart-item button {
+            background-color: #8B4513;
+            border: none;
+            color: white;
+            padding: 3px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-item button:hover {
+            background-color: #A0522D;
+        }
+
+        .cart-items.show {
+            display: block;
+        }
+
+        @keyframes blinkText {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveTitle {
+            from {
+                transform: translateX(-10px);
+            }
+            to {
+                transform: translateX(10px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>𝑮𝑼𝑰𝑻𝑨𝑹 𝑪𝑯𝑨𝑴 </h1>
+    <p>¡𝚎𝚗𝚌𝚞𝚎𝚗𝚝𝚛𝚊 𝚝𝚞 𝚜𝚘𝚗 𝚕𝚘𝚜 𝚖𝚘𝚍𝚎𝚕𝚘𝚜 𝚍𝚒𝚜𝚙𝚘𝚗𝚒𝚋𝚕𝚎𝚜!</p>
+    <div class="border-container">
+        <p>Cᴏᴍᴘʀᴀʀ ᴇɴ ɴᴜᴇsᴛʀᴀ ᴘᴀ́ɢɪɴᴀ ᴅᴇ ɢᴜɪᴛᴀʀʀᴀs ᴇs ᴍᴀ́s ϙᴜᴇ ᴜɴᴀ sɪᴍᴘʟᴇ ᴛʀᴀɴsᴀᴄᴄɪᴏ́ɴ; ᴇs ᴜɴᴀ ᴇxᴘᴇʀɪᴇɴᴄɪᴀ ᴄᴏᴍᴘʟᴇᴛᴀ ϙᴜᴇ ᴛᴇ ᴏғʀᴇᴄᴇ ᴄᴀʟɪᴅᴀᴅ, ᴠᴀʀɪᴇᴅᴀᴅ, sᴇʀᴠɪᴄɪᴏ ᴇxᴄᴇᴘᴄɪᴏɴᴀʟ ʏ ʟᴀ sᴀᴛɪsғᴀᴄᴄɪᴏ́ɴ ᴅᴇ ᴇɴᴄᴏɴᴛʀᴀʀ ᴇʟ ɪɴsᴛʀᴜᴍᴇɴᴛᴏ ᴘᴇʀғᴇᴄᴛᴏ ᴘᴀʀᴀ ᴇxᴘʀᴇsᴀʀ ᴛᴜ ᴄʀᴇᴀᴛɪᴠɪᴅᴀᴅ ᴍᴜsɪᴄᴀʟ.</p>
+    </div>
+    <a href="#"></a>
+</div>
+
+<div class="footer">
+    <div class="footer-container">
+        <p>𝙋𝙊𝙍 𝘼𝙃𝙊𝙍𝘼 𝙀𝙎𝙏𝙊𝙎 𝙎𝙊𝙉 𝙇𝙊𝙎 𝙈𝙊𝘿𝙀𝙇𝙊𝙎 𝘿𝙄𝙎𝙋𝙊𝙉𝙄𝘽𝙇𝙀𝙎:</p>
+    </div>
+</div>
+
+<div class="guitar-gallery">
+    <div class="guitar-item">
+        <img src="https://th.bing.com/th/id/OIP.RBtpwOJg63FlaX6YWoFV0QHaGn?w=192&h=180&c=7&r=0&o=5&pid=1.7" alt="Guitarra 1">
+        <p>$2500.</p>
+        <button>Comprar</button>
+    </div>
+    <div class="guitar-item">
+        <img src="https://th.bing.com/th/id/OIP.c1MHZRmGqLeIwJboErw1oAHaFq?w=241&h=184&c=7&r=0&o=5&pid=1.7" alt="Guitarra 2">
+        <p>$2000</p>
+        <button>Comprar</button>
+    </div>
+    <div class="guitar-item">
+        <img src="https://th.bing.com/th/id/OIP.CS71o-CsQiqmYhR_szuNtwHaI3?w=150&h=180&c=7&r=0&o=5&pid=1.7" alt="Guitarra 3">
+        <p>$3000</p>
+        <button>Comprar</button>
+    </div>
+    <div class="guitar-item">
+        <img src="https://th.bing.com/th/id/OIP.VoBOO8DpuOudL8s1qwqQSwHaJk?w=127&h=180&c=7&r=0&o=5&pid=1.7" alt="Guitarra 4">
+        <p>$1900</p>
+        <button>Comprar</button>
+    </div>
+    <div class="guitar-item">
+        <img src="https://th.bing.com/th/id/OIP.S9bSil3fyHaQj1BXoCRbqwHaHa?w=204&h=204&c=7&r=0&o=5&pid=1.7" alt="Guitarra 5">
+        <p>$2300</p>
+        <button>Comprar</button>
+    </div>
+    <div class="guitar-item">
+        <img src="https://th.bing.com/th/id/OIP.lv-Mdu0m_H6MgEt0ctBALQHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7" alt="Guitarra 6">
+        <p>$1800</p>
+        <button>Comprar</button>
+    </div>
+</div>
+
+<div class="cart-container">
+    <button class="cart-icon"></button>
+    <div class="cart-text">CARRITO DE COMPRAS</div>
+    <div class="cart-items"></div>
+</div>
+
+<script>
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartItems = document.querySelector('.cart-items');
+
+    cartIcon.addEventListener('click', () => {
+        cartItems.classList.toggle('show');
+    });
+
+    const addToCart = (item) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div>${item.name}</div>
+            <div>$${item.price}</div>
+            <button class="delete-item">Eliminar</button>
+        `;
+        cartItems.appendChild(cartItem);
+
+        const deleteButtons = document.querySelectorAll('.delete-item');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.parentElement.remove();
+            });
+        });
+    };
+
+    const addToCartButtons = document.querySelectorAll('.guitar-item button');
+    addToCartButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const guitarItem = button.parentNode;
+            const guitarImage = guitarItem.querySelector('img').src;
+            const guitarName = guitarItem.querySelector('p').textContent;
+            const guitarPrice = guitarName.split('$')[1];
+            const item = {
+                image: guitarImage,
+                name: guitarName,
+                price: guitarPrice
+            };
+            addToCart(item);
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Página Web</title>
+    <style>
+        /* Tu estilo CSS existente */
+    </style>
+</head>
+<body>
+
+<!-- Contenido existente -->
+
+<div class="container">
+    <!-- Contenido existente -->
+</div>
+
+<div class="footer">
+    <!-- Contenido existente -->
+</div>
+
+<div class="guitar-gallery">
+    <!-- Contenido existente -->
+</div>
+
+<div class="cart-container">
+    <!-- Contenido existente -->
+</div>
+
+<!-- Botón de redirección -->
+<div style="text-align: center; margin-top: 20px;">
+    <a href="index2.HTML" target="_blank">
+        <button>Jugar al juego</button>
+    </a>
+</div>
+
+<script>
+    // Tu JavaScript existente
+</script>
+
+</body>
+</html>
